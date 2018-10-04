@@ -10,8 +10,14 @@ public class Search {
     @FindBy(id = "BaseMainContent_MainContent_btnSearch")
     private WebElement buttonSearch = null;
 
-    @FindBy(id= "BaseMainContent_MainContent_txtNumber_txtText")
-    private WebElement numberLot = null;
+    @FindBy(id= "BaseMainContent_MainContent_chkPurchaseType_0")
+    private WebElement checkNorm223 = null;
+
+    @FindBy(id= "BaseMainContent_MainContent_chkPurchaseType_1")
+    private WebElement checkCommercialPurchase = null;
+
+    @FindBy(id= "BaseMainContent_MainContent_txtStartPrice_txtRangeFrom")
+    private WebElement startCost = null;
 
     Search(WebDriver driver){
         PageFactory.initElements(driver, this);
@@ -21,5 +27,7 @@ public class Search {
     void SelectSearch(){
         buttonSearch.click();
     }
-    void FillNumLot(String str){ numberLot.sendKeys(str); }
+    void FillCheck223(){ checkNorm223.click(); }
+    void FillCheckCommercialPurchase(){ checkCommercialPurchase.click(); }
+    void FillStartCost(String str){ startCost.sendKeys(str); }
 }

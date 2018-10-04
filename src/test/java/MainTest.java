@@ -17,12 +17,16 @@ public class MainTest {
     }
 
     @Test
-    public void fillNumLot(){
-        s.FillNumLot("2");
+    public void fillStartCost(){
+        s.FillStartCost("0");
     }
 
     @Test
-    public void searchLot(){
-        s.SelectSearch();
-    }
+    public void fillCheck223(){ s.FillCheck223(); }
+
+    @Test
+    public void fillCheckCommercialPurchase(){ s.FillCheckCommercialPurchase(); }
+
+    @Test
+    public void searchLot(){ s.SelectSearch(); }
 }
