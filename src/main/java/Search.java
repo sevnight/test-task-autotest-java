@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
 public class Search {
+
     private WebDriver driver;
 
     @FindBy(id = "BaseMainContent_MainContent_btnSearch")
@@ -19,6 +20,9 @@ public class Search {
     @FindBy(id= "BaseMainContent_MainContent_txtStartPrice_txtRangeFrom")
     private WebElement startCost = null;
 
+    @FindBy(css="td[dir=\"ltr\"] > select[class=\"ui-pg-selbox\"] > option[value=\"100\"]")
+    private WebElement selectListSize = null;
+
     Search(WebDriver driver){
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -30,4 +34,5 @@ public class Search {
     void FillCheck223(){ checkNorm223.click(); }
     void FillCheckCommercialPurchase(){ checkCommercialPurchase.click(); }
     void FillStartCost(String str){ startCost.sendKeys(str); }
+    void setListSize(){selectListSize.click();}
 }

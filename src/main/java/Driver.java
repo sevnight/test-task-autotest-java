@@ -14,5 +14,5 @@ public class Driver {
 
     }
     /*завершение*/
-    static void finish(){ driver.close(); }
+    static void finish(){ /*driver.close();*/ }
 }

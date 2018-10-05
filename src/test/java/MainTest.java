@@ -29,4 +29,10 @@ public class MainTest {
 
     @Test
     public void searchLot(){ s.SelectSearch(); }
+
+    @Test
+    public void set_ListSize(){
+        //$("td[dir=\"ltr\"] > select[class=\"ui-pg-selbox\"] > option[value=\"100\"]").click();
+        s.setListSize();
+    }
 }
