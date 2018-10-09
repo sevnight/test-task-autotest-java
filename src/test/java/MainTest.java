@@ -1,4 +1,4 @@
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.javatuples.Pair;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -50,7 +50,14 @@ public class MainTest {
         s.FillCheckCommercialPurchase();
         s.FillDate();
         s.SelectSearch();
-        s.setListSize();
-        System.out.println(s.focusRow());
+        s.setListSize100();
+        int ids = 0; double sum = 0;
+        for (int i =0; i < s.getSumPage(); i++){
+            Pair<Integer,Double> newSum = s.focusRow();
+            ids += newSum.getValue0();
+            sum += newSum.getValue1();
+            s.setNextPage();
+        }
+        System.out.println("Found purchases: "+ids+"\nThe sum: "+sum+" rub.");
     }
 }

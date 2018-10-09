@@ -47,7 +47,11 @@ public class Search {
     @FindBy(css="td.ui-datepicker-today")
     private WebElement todayDate = null;
 
+    @FindBy(id = "sp_1_BaseMainContent_MainContent_jqgTrade_toppager")
+    private WebElement sumPage = null;
 
+    @FindBy(id="next_t_BaseMainContent_MainContent_jqgTrade_toppager")
+    private WebElement nextPage = null;
 
     Search(WebDriver driver){
         PageFactory.initElements(driver, this);
@@ -60,21 +64,25 @@ public class Search {
     void FillCheck223(){ checkNorm223.click(); }
     void FillCheckCommercialPurchase(){ checkCommercialPurchase.click(); }
     void FillStartCost(String str){ startCost.sendKeys(str); }
-    void setListSize(){
+    void setListSize100(){
         (new WebDriverWait(driver,10)).until(
                 ExpectedConditions.invisibilityOfElementLocated(By
                         .cssSelector("#load_BaseMainContent_MainContent_jqgTrade"))
         );
         selectListSize.click();
-    }
-    Pair<Double, Double> focusRow(){
-        double ids=0;
-        double allsum=0;
         (new WebDriverWait(driver,20)).until(new ExpectedCondition<Boolean>(){
             public Boolean apply(WebDriver d) {
                 return rowInList.size() == 100;
             }
         });
+    }
+    Pair<Integer, Double> focusRow(){
+        int ids=0;
+        double allsum=0;
+        (new WebDriverWait(driver,10)).until(
+                ExpectedConditions.invisibilityOfElementLocated(By
+                        .cssSelector("#load_BaseMainContent_MainContent_jqgTrade"))
+        );
         for (WebElement row: rowInList) {
             if (!(row.findElement(By
                     .cssSelector("td[aria-describedby=\"BaseMainContent_MainContent_jqgTrade_OosNumber\"]"))
@@ -98,4 +106,8 @@ public class Search {
         todayDate.click();
 
     }
+    Integer getSumPage(){
+        return Integer.parseInt(sumPage.getText());
+    }
+    void setNextPage(){nextPage.click();}
 }
