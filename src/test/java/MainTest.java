@@ -48,6 +48,7 @@ public class MainTest {
         s.FillStartCost("0");
         s.FillCheck223();
         s.FillCheckCommercialPurchase();
+        s.FillDate();
         s.SelectSearch();
         s.setListSize();
         System.out.println(s.focusRow());

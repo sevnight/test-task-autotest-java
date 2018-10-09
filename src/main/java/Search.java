@@ -35,6 +35,20 @@ public class Search {
     })
     private List<WebElement> rowInList = null;
 
+    @FindBy(css="input[id=\"BaseMainContent_MainContent_txtPublicationDate_txtDateFrom\"]")
+    private WebElement dateFormYesterday;
+
+    @FindBy(css="td.ui-datepicker-today")
+    private WebElement yesterdayDate = null;
+
+    @FindBy(css="input[id=\"BaseMainContent_MainContent_txtPublicationDate_txtDateTo\"]")
+    private WebElement dateFormToday;
+
+    @FindBy(css="td.ui-datepicker-today")
+    private WebElement todayDate = null;
+
+
+
     Search(WebDriver driver){
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -76,5 +90,12 @@ public class Search {
             }
         }
         return Pair.with(ids , allsum);
+    }
+    void FillDate(){
+        dateFormYesterday.click();
+        yesterdayDate.click();
+        dateFormToday.click();
+        todayDate.click();
+
     }
 }
