@@ -87,8 +87,14 @@ public class Search {
             if (!(row.findElement(By
                     .cssSelector("td[aria-describedby=\"BaseMainContent_MainContent_jqgTrade_OosNumber\"]"))
                     .getText()
-                    .equals("&nbsp;"))
+                    .equals(" "))
                     //!= "&nbsp;"
+                && (!
+                row.findElement((By
+                    .cssSelector("td[aria-describedby=\"BaseMainContent_MainContent_jqgTrade_LotStateString\"]")))
+                    .getText()
+                    .equals("Отменена")
+                )
             ){
                 ids++;
                 allsum += Double.parseDouble( row.findElement(By
