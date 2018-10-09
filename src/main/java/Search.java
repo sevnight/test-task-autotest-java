@@ -58,12 +58,32 @@ public class Search {
         this.driver = driver;
     }
 
+    /**
+     * Нажатие кнопки "Поиск"
+     */
     void SelectSearch(){
         buttonSearch.click();
     }
+
+    /**
+     * Выставление чека на "Закупка в соответствии с нормами 223-ФЗ (за исключением норм статьи 3.2 223-ФЗ)"
+     */
     void FillCheck223(){ checkNorm223.click(); }
+
+    /**
+     * Выставление чека на "Коммерческая закупка"
+     */
     void FillCheckCommercialPurchase(){ checkCommercialPurchase.click(); }
+
+    /**
+     * Выставление минимальной цены
+     * @param str
+     */
     void FillStartCost(String str){ startCost.sendKeys(str); }
+
+    /**
+     * Выставление размерности отображаемого списка закупок равным "100"
+     */
     void setListSize100(){
         (new WebDriverWait(driver,10)).until(
                 ExpectedConditions.invisibilityOfElementLocated(By
@@ -76,6 +96,11 @@ public class Search {
             }
         });
     }
+
+    /**
+     * Подсчет количества закупок имеющих номер в ЕИС и не отмененных
+     * @return передаётся пара <"количество закупок", "их общая стоимость">
+     */
     Pair<Integer, Double> focusRow(){
         int ids=0;
         double allsum=0;
@@ -105,6 +130,10 @@ public class Search {
         }
         return Pair.with(ids , allsum);
     }
+
+    /**
+     * Задание в "Дата публикации извещения" сегодняшней даты
+     */
     void FillDate(){
         dateFormYesterday.click();
         yesterdayDate.click();
@@ -112,8 +141,17 @@ public class Search {
         todayDate.click();
 
     }
+
+    /**
+     * Просмотр количества найденных страниц
+     * @return значение количества страниц для длины цикла их прохода
+     */
     Integer getSumPage(){
         return Integer.parseInt(sumPage.getText());
     }
+
+    /**
+     * Переключение на следующую страницу
+     */
     void setNextPage(){nextPage.click();}
 }
