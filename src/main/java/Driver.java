@@ -1,14 +1,18 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-/*Драйвер Chrome для реализации приложения*/
+/**
+ * Драйвер Chrome для реализации приложения
+ */
 public class Driver {
 
     static WebDriver driver = null;
     private static String URL =  "https://223.rts-tender.ru/supplier/auction/Trade/Search.aspx";
     static Logger log;
 
-    /*инициализация*/
+    /**
+     * Инициализация
+     */
     static void init(){
         log.writeLog("Инициализация драйвера Chrome");
         driver = new ChromeDriver();
@@ -16,10 +20,13 @@ public class Driver {
         driver.get(URL);
 
     }
-    /*завершение*/
+
+    /**
+     * Конец теста
+     */
     static void finish(){
         log.writeLog("Завершение теста");
         Driver.log.finishLog();
-        /*driver.close();*/
+        //driver.close(); //разкоментировать чтобы браузер закрывался после теста
     }
 }
