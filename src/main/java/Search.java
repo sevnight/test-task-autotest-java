@@ -82,19 +82,22 @@ public class Search {
     void FillStartCost(String str){ startCost.sendKeys(str); }
 
     /**
-     * Выставление размерности отображаемого списка закупок равным "100"
+     * Ожидание загрузки списка закупок
      */
-    void setListSize100(){
-        (new WebDriverWait(driver,10)).until(
+    void WaitLoad(){
+        int WAITING_TIME_LIST = 20;
+        (new WebDriverWait(driver,WAITING_TIME_LIST)).until(
                 ExpectedConditions.invisibilityOfElementLocated(By
                         .cssSelector("#load_BaseMainContent_MainContent_jqgTrade"))
         );
+    }
+
+    /**
+     * Выставление размерности отображаемого списка закупок равным "100"
+     */
+    void setListSize100(){
         selectListSize.click();
-        (new WebDriverWait(driver,20)).until(new ExpectedCondition<Boolean>(){
-            public Boolean apply(WebDriver d) {
-                return rowInList.size() == 100;
-            }
-        });
+        WaitLoad();
     }
 
     /**
@@ -103,11 +106,8 @@ public class Search {
      */
     Pair<Integer, Double> focusRow(){
         int ids=0;
-        double allsum=0;
-        (new WebDriverWait(driver,10)).until(
-                ExpectedConditions.invisibilityOfElementLocated(By
-                        .cssSelector("#load_BaseMainContent_MainContent_jqgTrade"))
-        );
+        double sum=0;
+        WaitLoad();
         for (WebElement row: rowInList) {
             if (!(row.findElement(By
                     .cssSelector("td[aria-describedby=\"BaseMainContent_MainContent_jqgTrade_OosNumber\"]"))
@@ -122,13 +122,13 @@ public class Search {
                 )
             ){
                 ids++;
-                allsum += Double.parseDouble( row.findElement(By
+                sum += Double.parseDouble( row.findElement(By
                         .cssSelector("td[aria-describedby=\"BaseMainContent_MainContent_jqgTrade_StartPrice\"]"))
                         .getText().replaceAll("[^\\.0123456789]","")
                 );
             }
         }
-        return Pair.with(ids , allsum);
+        return Pair.with(ids , sum);
     }
 
     /**
@@ -153,5 +153,10 @@ public class Search {
     /**
      * Переключение на следующую страницу
      */
-    void setNextPage(){nextPage.click();}
+    void setNextPage(){
+        if (!nextPage  //ненужная проверка, но пусть будет
+                .getAttribute("class").equals("ui-pg-button ui-corner-all ui-state-disabled")){
+            nextPage.click();
+        }
+    }
 }

@@ -19,32 +19,6 @@ public class MainTest {
     public void close(){
         Driver.finish();
     }
-/*
-    @Test
-    public void fillStartCost(){
-        s.FillStartCost("0");
-    }
-
-    @Test
-    public void fillCheck223(){ s.FillCheck223(); }
-
-    @Test
-    public void fillCheckCommercialPurchase(){ s.FillCheckCommercialPurchase(); }
-
-    @Test
-    public void searchLot(){ s.SelectSearch(); }
-
-    @Test
-    public void set_ListSize(){
-        //$("td[dir=\"ltr\"] > select[class=\"ui-pg-selbox\"] > option[value=\"100\"]").click();
-        s.setListSize();
-    }
-
-    @Test
-    public void checkRow(){
-        System.out.println(s.focusRow()); //s.focusRow();
-    }
-    */
     @Test
     public void MainTest(){
         Driver.log.writeLog("Выставление начальной цены '0'");
@@ -57,15 +31,16 @@ public class MainTest {
         s.FillDate();
         Driver.log.writeLog("Начало поиска");
         s.SelectSearch();
+        Driver.log.writeLog("Ожидание загрузки списка для последующего его форматирования");
+        s.WaitLoad();
         Driver.log.writeLog("Выставление размера списка на '100'");
         s.setListSize100();
         Driver.log.writeLog("Циклический расчет суммы");
         int ids = 0; double sum = 0;
-        for (int i =0; i < s.getSumPage(); i++){
+        for (int i =0; i < s.getSumPage(); i++, s.setNextPage()){
             Pair<Integer,Double> newSum = s.focusRow();
             ids += newSum.getValue0();
             sum += newSum.getValue1();
-            s.setNextPage();
         }
         Driver.log.writeLog("Найденно "+ids+" закупок. Сумма: "+sum+" рублей.");
         System.out.println("Found purchases: "+ids+"\nThe sum: "+sum+" rub.");
