@@ -3,6 +3,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import java.text.MessageFormat;
+
 
 public class MainTest {
 
@@ -42,7 +44,7 @@ public class MainTest {
             ids += newSum.getValue0();
             sum += newSum.getValue1();
         }
-        Driver.log.writeLog("Найденно "+ids+" закупок. Сумма: "+sum+" рублей.");
+        Driver.log.writeLog(String.format("Найденно закупок: %d  Сумма = %.3f рублей.", ids,sum));
         System.out.println("Found purchases: "+ids+"\nThe sum: "+sum+" rub.");
     }
 }
