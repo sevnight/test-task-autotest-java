@@ -27,6 +27,6 @@ public class Driver {
     static void finish(){
         log.writeLog("Завершение теста");
         Driver.log.finishLog();
-        //driver.close(); //разкоментировать чтобы браузер закрывался после теста
+        driver.close();
     }
 }
