@@ -16,9 +16,8 @@ public class Driver {
     static void init(){
         log.writeLog("Инициализация драйвера Chrome");
         driver = new ChromeDriver();
-        log.writeLog("Перевод по "+Driver.URL);
+        log.writeLog("Переход по "+Driver.URL);
         driver.get(URL);
-
     }
 
     /**
