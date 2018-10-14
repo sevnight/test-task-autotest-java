@@ -1,11 +1,15 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+
+import java.io.File;
 
 /**
  * Драйвер Chrome для реализации приложения
  */
 public class Driver {
 
+    private static ChromeDriverService service;
     static WebDriver driver = null;
     private static String URL =  "https://223.rts-tender.ru/supplier/auction/Trade/Search.aspx";
     static Logger log;
@@ -15,7 +19,11 @@ public class Driver {
      */
     static void init(){
         log.writeLog("Инициализация драйвера Chrome");
-        driver = new ChromeDriver();
+        service = new ChromeDriverService.Builder()
+                .usingDriverExecutable(new File("chromedriver.exe"))
+                .usingAnyFreePort()
+                .build();
+        driver = new ChromeDriver(service);
         log.writeLog("Переход по "+Driver.URL);
         driver.get(URL);
     }
@@ -26,6 +34,6 @@ public class Driver {
     static void finish(){
         log.writeLog("Завершение теста");
         Driver.log.finishLog();
-        driver.close();
+        //driver.close();    /*тута закрываетается браузер, закоменть чтобы увидеть*/
     }
 }
