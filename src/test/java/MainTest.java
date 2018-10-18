@@ -108,7 +108,7 @@ public class MainTest {
                 sum += newSum.getValue1();
             }
             Driver.log.writeLog(String.format("Найденно закупок: %d  Сумма = %.3f рублей.", ids,sum));
-            System.out.println("Found purchases: "+ids+"\nThe sum: "+sum+" rub.");
+            System.out.println("Найдено закупок: "+ids+" на сумму: "+sum+" рублей.");
         }
         catch (Exception e){
             Driver.log.writeLog("[ERROR] Не удаётся обработать список закупок");
