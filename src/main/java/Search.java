@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+/**
+ * Корневые методы использующие локаторы
+ */
 public class Search {
 
     private WebDriver driver;

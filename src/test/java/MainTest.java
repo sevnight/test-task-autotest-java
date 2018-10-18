@@ -1,6 +1,9 @@
 import cucumber.api.java.ru.*;
 import org.javatuples.Pair;
 
+/**
+ * Основные методы описывающие тест
+ */
 public class MainTest {
 
     private Search s;

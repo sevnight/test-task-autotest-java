@@ -15,7 +15,8 @@ public class Driver {
     static Logger log;
 
     /**
-     * Инициализация
+     * Инициализация Chrome драйвера для запуска браузера
+     * (Рекомендация: хранить драйвера в проекте)
      */
     static void init(){
         log.writeLog("Инициализация драйвера Chrome");
@@ -34,6 +35,7 @@ public class Driver {
     static void finish(){
         log.writeLog("Завершение теста");
         Driver.log.finishLog();
-        //driver.close();    /*тута закрываетается браузер, закоменть чтобы увидеть*/
+        driver.close(); //если закоментировать то браузер не закроется
+                        // и останется процесс в диспетчере
     }
 }
