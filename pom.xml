@@ -4,38 +4,114 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>solarl_y.kuskov</groupId>
-    <artifactId>my_first_test</artifactId>
+    <groupId>ru.y.kuskov</groupId>
+    <artifactId>rts-tender-mytest</artifactId>
     <version>1.0-SNAPSHOT</version>
+    
+    <name>rts-tender</name>
 
     <!-- Properties -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <cucumber.version>1.2.4</cucumber.version>
+        <selenium.version>3.12.0</selenium.version>
+        <selenide.version>4.11.4</selenide.version>
+        <junit.version>4.12</junit.version>
+        <allure.version>1.5.2</allure.version>
+        <source.target.version>1.8</source.target.version>
+        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+        <aspectj.version>1.8.4</aspectj.version>
+        <slf4j.log.version>1.7.5</slf4j.log.version>
+        <javatuples.version>1.2</javatuples.version>
     </properties>
+
+    <dependencies>
+        <!-- Cucumber-Java (base) -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java8</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JUnit (base) -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <!-- Selenium (base) -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <!-- Selenide (base) -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Cucumber-JUnit (base) -->
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Pair -->
+        <dependency>
+            <groupId>org.javatuples</groupId>
+            <artifactId>javatuples</artifactId>
+            <version>${javatuples.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Logger -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.log.version}</version>
+        </dependency>
+        <!-- Debug (screenshots/html-fix) -->
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-java-aspects</artifactId>
+            <version>${allure.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-commons</artifactId>
+            <version>${allure.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <plugins>
+            <!-- Maven build (base) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${source.target.version}</source>
+                    <target>${source.target.version}</target>
+                    <compilerArgument>-proc:none</compilerArgument>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
             </plugin>
-
             <!--Run tests (base) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
-                <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <argLine>
-                        -Dconsole.encoding=UTF-8
-                    </argLine>
-                </configuration>
                 <dependencies>
                     <!-- Maven integration with JUnit tests (base) -->
                     <dependency>
@@ -47,33 +123,4 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>2.53.1</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java8</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>1.2.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.javatuples</groupId>
-            <artifactId>javatuples</artifactId>
-            <version>1.2</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
-
 </project>
