@@ -1,7 +1,2 @@
-*
-!main/java
-!test/java/steps
-!test/resources/features
-!pom.xml
-!target/test-classes/logging.txt
-
+.idea
+.gitignore
